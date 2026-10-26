@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ghazioui Family | Our Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --gold: #d4af37;
+    --dark: #0a0a0a;
+    --deep: #121212;
+    --light: #f5f5f5;
+    --accent: #e6b800;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+  
+  .bg-animation {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 50%, rgba(212,175,55,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212,175,55,0.1) 0%, transparent 50%),
+                var(--dark);
+  }
+  
+  .bg-animation::before {
+    content: '';
+    position: absolute;
+    width: 200%; height: 200%;
+    background-image: 
+      linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 20s linear infinite;
+  }
+  
+  @keyframes moveGrid {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(50px,50px); }
+  }
+  
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+  }
+  
+  .hero-badge {
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 25px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.2s;
+  }
+  
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.4s;
+  }
+  
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    max-width: 700px;
+    color: #b8b8b8;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+  }
+  
+  .hero-divider {
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+    margin: 35px auto;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.8s;
+  }
+  
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+  
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  
+  .section-title span {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+  
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-top: 15px;
+    color: #fff;
+  }
+  
+  .family-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+  }
+  
+  .card {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent);
+    transition: left 0.7s;
+  }
+  
+  .card:hover::before { left: 100%; }
+  
+  .card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: var(--gold);
+    box-shadow: 0 25px 60px rgba(212,175,55,0.25);
+  }
+  
+  .avatar {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #8b6914);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+    transition: transform 0.4s;
+  }
+  
+  .card:hover .avatar { transform: rotate(-8deg) scale(1.1); }
+  
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  
+  .role {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .card p {
+    color: #a8a8a8;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  .tag {
+    background: rgba(212,175,55,0.12);
+    border: 1px solid rgba(212,175,55,0.35);
+    color: var(--gold);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .card.founder { grid-column: 1 / -1; }
+  
+  .card.founder .avatar {
+    width: 120px; height: 120px;
+    font-size: 3rem;
+  }
+  
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  .stat {
+    text-align: center;
+    padding: 35px 20px;
+    background: rgba(212,175,55,0.05);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 15px;
+    transition: 0.4s;
+  }
+  
+  .stat:hover {
+    background: rgba(212,175,55,0.12);
+    transform: scale(1.05);
+  }
+  
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 900;
+  }
+  
+  .stat .label {
+    color: #aaa;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 1px solid rgba(212,175,55,0.15);
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  footer .heart { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="bg-animation"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Est. With Love</div>
+  <h1>The Ghazioui Family</h1>
+  <div class="hero-divider"></div>
+  <p>A story of dedication, ambition, and unity — where every member shines with their own passion, and together we build a legacy worth remembering.</p>
+  <div class="scroll-hint">▼ SCROLL TO EXPLORE ▼</div>
+</section>
+
+<!-- FAMILY -->
+<div class="container">
+  <div class="section-title">
+    <span>Meet The Members</span>
+    <h2>Our Beloved Family</h2>
+  </div>
+
+  <div class="family-grid">
+
+    <!-- FATHER -->
+    <div class="card">
+      <div class="avatar">M</div>
+      <h3>Mohamed Ghazioui</h3>
+      <div class="role">Father • 54 Years Old</div>
+      <p>The pillar of our family. A master building contractor whose hands have raised homes and hopes alike. With decades of experience in construction, he has taught us that true strength is built brick by brick, with patience and honor. A man of few words but endless wisdom — his legacy stands tall in every wall he has built.</p>
+      <div class="tags">
+        <span class="tag">Contractor</span>
+        <span class="tag">Builder</span>
+        <span class="tag">Family Pillar</span>
+      </div>
+    </div>
+
+    <!-- MOTHER -->
+    <div class="card">
+      <div class="avatar">L</div>
+      <h3>Latifa</h3>
+      <div class="role">Mother • 50 Years Old</div>
+      <p>The warm heart of our home. A devoted homemaker whose love knows no bounds. She transforms every house into a home, every meal into a memory, and every day into something worth treasuring. Her patience is legendary, her kindness endless — she is the glue that holds our world together.</p>
+      <div class="tags">
+        <span class="tag">Homemaker</span>
+        <span class="tag">Heart of Home</span>
+        <span class="tag">Endless Love</span>
+      </div>
+    </div>
+
+    <!-- OLDER BROTHER MOHAMED -->
+    <div class="card">
+      <div class="avatar">M</div>
+      <h3>Mohamed</h3>
+      <div class="role">Eldest Brother • 30 Years Old</div>
+      <p>The eldest of the siblings and a true source of pride. Mohamed works at the largest pharmaceutical company in Morocco, based in Casablanca, where he holds a position of great responsibility — overseeing medicines and ensuring the highest standards of quality and safety. His role reflects precision, integrity, and commitment to the well-being of countless people. A natural leader whose maturity and dedication inspire the younger ones to aim higher every single day.</p>
+      <div class="tags">
+        <span class="tag">Pharmaceutical Industry</span>
+        <span class="tag">Casablanca</span>
+        <span class="tag">Medicines Supervisor</span>
+        <span class="tag">Role Model</span>
+      </div>
+    </div>
+
+    <!-- SISTER AMIRA -->
+    <div class="card">
+      <div class="avatar">A</div>
+      <h3>Amira</h3>
+      <div class="role">Sister • 24 Years Old</div>
+      <p>A brilliant industrial engineer working with one of the nation's largest phosphate companies. Sharp-minded, determined, and a true inspiration to all. She has proven that intellect and dedication know no boundaries. Her career in such a vital industry reflects the strength and capability that runs in our family's blood.</p>
+      <div class="tags">
+        <span class="tag">Industrial Engineer</span>
+        <span class="tag">Phosphate Industry</span>
+        <span class="tag">Inspiring</span>
+      </div>
+    </div>
+
+    <!-- BROTHER AYOUB -->
+    <div class="card">
+      <div class="avatar">A</div>
+      <h3>Ayoub</h3>
+      <div class="role">Brother • 25 Years Old</div>
+      <p>A young man of vision, ambition, and remarkable intellect. Ayoub holds a <strong>Master's degree in Computer Science</strong> and has already established himself as a successful <strong>entrepreneur</strong>, leading numerous projects across the tech world. Standing tall both in stature and in spirit, he brings energy and determination to every challenge he faces. Whether through innovation or leadership, Ayoub is shaping the future — one project at a time. A living proof that passion combined with education creates unstoppable success.</p>
+      <div class="tags">
+        <span class="tag">Master's in Computer Science</span>
+        <span class="tag">Entrepreneur</span>
+        <span class="tag">Multiple Projects</span>
+        <span class="tag">Tech Visionary</span>
+        <span class="tag">Tall</span>
+      </div>
+    </div>
+
+    <!-- ME - YOUSSEF -->
+    <div class="card founder">
+      <div class="avatar">A</div>
+      <h3>Abdelali Ghazioui</h3>
+      <div class="role">Youngest • 15 Years Old • The Proud Rising Star</div>
+      <p>At only 15, I stand tall — literally and figuratively — at 1.70m, but it's my mind and spirit that reach even higher. A dedicated student in my first year of secondary education (Tahili), I pursue excellence both in academics and beyond. My passions are two: the art of <strong>programming</strong> and the discipline of <strong>kickboxing</strong>. I have earned numerous championships in kickboxing and achieved remarkable success in programming competitions — including a proud victory at a competition held at <strong>Al-Akhawayn University</strong>. I am a cybersecurity enthusiast, always exploring, always learning. My dream? To become a successful <strong>self-made entrepreneur</strong>. I am proud of my roots, my achievements, and the bright future I am building — one challenge at a time.</p>
+      <div class="tags">
+        <span class="tag">Kickboxing Champion</span>
+        <span class="tag">Programming</span>
+        <span class="tag">Cybersecurity</span>
+        <span class="tag">Al-Akhawayn Winner</span>
+        <span class="tag">Future Entrepreneur</span>
+        <span class="tag">1.70m Tall</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="num">6</div>
+    <div class="label">Family Members</div>
+  </div>
+  <div class="stat">
+    <div class="num">54</div>
+    <div class="label">Years of Wisdom</div>
+  </div>
+  <div class="stat">
+    <div class="num">∞</div>
+    <div class="label">Love & Unity</div>
+  </div>
+  <div class="stat">
+    <div class="num">15</div>
+    <div class="label">Dreams Rising</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>The Ghazioui Family — Built with <span class="heart">♥</span>, passion, and pride.</p>
+  <p style="margin-top:10px; font-size:0.8rem;">© 2026 • Our Story Continues...</p>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  
+  cards.forEach(card => observer.observe(card));
+  
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    if (hero) hero.style.opacity = 1 - scrolled / 700;
+  });
+</script>
+
+</body>
+</html>
